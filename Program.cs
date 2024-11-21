@@ -28,5 +28,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
-// esd_project
