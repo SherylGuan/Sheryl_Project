@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <!-- Include Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+
+        /* Hero section styling */
+        .hero {
+            background: url('https://example.com/hero-image.jpg') no-repeat center center/cover;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+            .hero h1 {
+                font-size: 2.5rem;
+                margin-bottom: 10px;
+                color: black;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+                color: black;
+            }
+
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .product-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+            .product-card img {
+                width: 100%;
+                height: auto;
+                border-radius: 8px;
+            }
+
+            .product-card h3 {
+                color: #333;
+                font-size: 1.25rem;
+                margin-top: 15px;
+            }
+
+            .product-card p {
+                color: #777;
+                font-size: 1rem;
+                margin: 10px 0;
+            }
+
+            .product-card .price {
+                font-size: 1.2rem;
+                font-weight: bold;
+                color: #00bcd4;
+            }
+
+            .product-card .add-to-cart {
+                margin-top: 15px;
+                padding: 10px;
+                background-color: #00bcd4;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+                .product-card .add-to-cart:hover {
+                    background-color: #008c99;
+                }
+
+            .product-card a {
+                text-decoration: none;
+                color: white;
+            }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            .product-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">
+            <a href="Home.html">Costume Corner</a>
+        </div>
+        <div class="nav-links">
+            <a href="Home.html">Home</a>
+            <a href="Products.html">Products</a>
+            <a href="Bookings.html">Bookings</a>
+            <a href="AboutUs.html">About Us</a>
+            <a href="LocateUs.html">Locate Us</a>
+            <a href="BookNow.html">Book Now</a>
+            <a href="Profile.html" class="profile-icon"><i class="fas fa-user"></i></a>
+            <a href="Login.html" class="logout-icon"><i class="fas fa-sign-out-alt"></i></a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div>
+            <h1>Our Products</h1>
+            <p>Rent your favorite Genshin Impact-inspired outfits here!</p>
+        </div>
+    </div>
+
+    <!-- Products Section -->
+    <div class="product-container">
+        <!-- Product 1 -->
+        <div class="product-card">
+            <img src="images\Diluc.png" alt="Diluc">
+            <h3>Diluc</h3>
+            <p>A noble and heroic look with a hint of mystery. Diluc’s outfit consists of a long black coat adorned with crimson accents, intricate details on the sleeves, and a white shirt underneath. The high black boots and gloves add to the gallant style. A prop claymore can accompany the costume for an added heroic effect, while his signature red hair completes the look.</p>
+            <div class="price">$8 per day</div>
+            <button class="add-to-cart"><a href="BookNow.html">Add to Cart</a></button>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+            <img src="images\Kaedehara.png" alt="Kaedehara Kazuha">
+            <h3>Kaedehara Kazuha</h3>
+            <p>Kazuha’s outfit is inspired by traditional Japanese samurai attire with a modern touch. His costume includes a black and red haori (jacket), beige hakama-style pants, and red ropes tied around the waist and arms. A flowing scarf and accessories that reflect his anemo (wind) vision give the look a free-spirited vibe, while a prop katana adds to his wandering samurai appeal.</p>
+            <div class="price">$8 per day</div>
+            <button class="add-to-cart"><a href="BookNow.html">Add to Cart</a></button>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card">
+            <img src="images\Kamisato.png" alt="Kamisato Ayaka">
+            <h3>Kamisato Ayaka</h3>
+            <p>Ayaka’s attire is traditional yet elegant, featuring a blue and white kimono-inspired dress with gold accents. The outfit includes a short skirt, wide sleeves, and sashes tied around the waist and back. Her accessories include a fan and blue ribbon in her hair, giving her a graceful and poised look inspired by the beauty of Inazuma.</p>
+            <div class="price">$8 per day</div>
+            <button class="add-to-cart"><a href="BookNow.html">Add to Cart</a></button>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card">
+            <img src="images/Kinich.png" alt="Kinich">
+            <h3>Kinich</h3>
+            <p>Kinich’s outfit draws inspiration from Mesoamerican mythology, featuring feathered and vibrant elements with a focus on colors like turquoise and gold. The costume could include an intricate headdress with feathers, a tunic decorated with geometric patterns, and accessories inspired by the sun, reflecting Kinich’s connection to warmth and light.</p>
+            <div class="price">$8 per day</div>
+            <button class="add-to-cart"><a href="BookNow.html">Add to Cart</a></button>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card">
+            <img src="images/Nahida.png" alt="Nahida">
+            <h3>Nahida</h3>
+            <p>Nahida’s costume has a serene, natural feel, inspired by greenery and life. It includes a short white dress with green and gold accents, leaf motifs, and intricate patterns. Her ethereal look is complemented by leafy accessories in her hair, giving her an innocent yet wise aura fitting of her connection to the Dendro element.</p>
+            <div class="price">$8 per day</div>
+            <button class="add-to-cart"><a href="BookNow.html">Add to Cart</a></button>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="product-card">
+            <img src="images/Navia.png" alt="Navia">
+            <h3>Navia</h3>
+            <p>Navia’s outfit exudes a charming, adventurous vibe with influences from Fontaine's elegant aesthetic. It includes a fitted coat with ruffled sleeves, a long skirt with lace accents, and delicate jewelry with water-inspired motifs. Her look is complete with gloves and a soft, refined color palette that gives her an air of refined elegance and strength.</p>
+            <div class="price">$8 per day</div>
+            <button class="add-to-cart"><a href="BookNow.html">Add to Cart</a></button>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="product-card">
+            <img src="images/Neuvillette.png" alt="Neuvillette">
+            <h3>Neuvillette</h3>
+            <p>Neuvillette’s attire combines elegance and authority, featuring a dark, tailored jacket with silver and blue accents, long coattails, and intricate lapel designs. He wears high boots and a silk cravat for added sophistication. This costume reflects his refined and powerful character, suited to Fontaine’s judicial ambiance.</p>
+            <div class="price">$8 per day</div>
+            <button class="add-to-cart"><a href="BookNow.html">Add to Cart</a></button>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="product-card">
+            <img src="images/Ningguang.png" alt="Ningguang">
+            <h3>Ningguang</h3>
+            <p>Ningguang’s costume is glamorous and sophisticated, showcasing a white and gold gown with fur accents, high collar, and golden embroidery. The dress is asymmetrical, with elegant details that reflect her wealth and power. A pair of luxurious gloves and intricate jade accessories give the outfit an aura of elegance and status.</p>
+            <div class="price">$8 per day</div>
+            <button class="add-to-cart"><a href="BookNow.html">Add to Cart</a></button>
+        </div>
+
+        <!-- Product 9 -->
+        <div class="product-card">
+            <img src="images/Raiden Shogun.png" alt="Raiden Shogun">
+            <h3>Raiden Shogun</h3>
+            <p>Raiden Shogun’s attire combines traditional Japanese armor with a touch of elegance. The costume includes a purple kimono with intricate floral patterns, layered armor on the shoulders, and a flowing obi. Her outfit includes accessories like a ribbon with electro motifs and her symbolic hairpin, giving her a regal, commanding presence.</p>
+            <div class="price">$8 per day</div>
+            <button class="add-to-cart"><a href="BookNow.html">Add to Cart</a></button>
+        </div>
+
+        <!-- Product 10 -->
+        <div class="product-card">
+            <img src="images/Kokomi.png" alt="Sangonomiya Kokomi">
+            <h3>Sangonomiya Kokomi</h3>
+            <p>Kokomi’s attire is delicate and ocean-inspired, featuring a blue and pink outfit with flowing ribbons and aquatic motifs. Her gown resembles a mermaid’s tail and is adorned with pearl-like accents. The costume is completed with her signature coral and water motifs, embodying the grace and fluidity of the ocean.</p>
+            <div class="price">$8 per day</div>
+            <button class="add-to-cart"><a href="BookNow.html">Add to Cart</a></button>
+        </div>
+
+        <!-- Product 11 -->
+        <div class="product-card">
+            <img src="images/Xiao.png" alt="Xiao">
+            <h3>Xiao</h3>
+            <p>Xiao’s costume has a mysterious and edgy look with a sleeveless tunic, dark pants, and a mix of armor and light clothing. His design includes teal and purple accents, beads, and a jade necklace. The outfit reflects Xiao’s status as a vigilant protector with an otherworldly and solemn aesthetic.</p>
+            <div class="price">$8 per day</div>
+            <button class="add-to-cart"><a href="BookNow.html">Add to Cart</a></button>
+        </div>
+
+        <!-- Product 12 -->
+        <div class="product-card">
+            <img src="images/Xilonen.png" alt="Xilonen">
+            <h3>Xilonen</h3>
+            <p>Xilonen’s costume is inspired by harvest themes and Mesoamerican culture, with earthy tones, feathered accents, and plant motifs. The outfit includes a short dress with nature-inspired patterns and accessories like a headdress adorned with maize or feathers. This costume embodies the spirit of fertility, growth, and abundance.</p>
+            <div class="price">$8 per day</div>
+            <button class="add-to-cart"><a href="BookNow.html">Add to Cart</a></button>
+        </div>
+
+        <!-- Product 13 -->
+        <div class="product-card">
+            <img src="images/Yelan.png" alt="Yelan">
+            <h3>Yelan</h3>
+            <p>Yelan’s outfit is sleek and modern with a dark blue and black color scheme. She wears a high-collared jacket, fitted shorts, and an intricate belt adorned with gemstones. Her accessories include fur trims and jewelry with geometric designs, adding a mysterious, confident, and bold look to her character.</p>
+            <div class="price">$8 per day</div>
+            <button class="add-to-cart"><a href="BookNow.html">Add to Cart</a></button>
+        </div>
+
+        <!-- Product 14 -->
+        <div class="product-card">
+            <img src="images/Zhongli.png" alt="Zhongli">
+            <h3>Zhongli</h3>
+            <p>Zhongli’s attire has a dignified and refined look, with a long brown coat, golden accents, and traditional patterns. The costume includes a high collar, layered vest, and detailed gloves. Gold motifs and geo-themed jewelry complement the look, reflecting his wisdom, strength, and connection to the earth.</p>
+            <div class="price">$8 per day</div>
+            <button class="add-to-cart"><a href="BookNow.html">Add to Cart</a></button>
+        </div>
+    </div>
+
+    <!-- Footer --> 
+    <footer>
+        <p>&copy; 2024 Costume Corner. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

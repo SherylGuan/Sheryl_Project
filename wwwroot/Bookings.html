@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookings</title>
+    <!-- Include Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Include Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+    </style>
+    <script>
+        let role = "";
+        let authToken = ""; // Declare jwtToken in a broader scope so it's accessible to both functions
+
+        // Decode the JWT token and extract user data
+        function decodeJWT() {
+            authToken = localStorage.getItem('jwtToken');
+            if (authToken) {
+                // Decode the JWT manually
+                const base64Url = authToken.split('.')[1];
+                const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+                const jsonPayload = JSON.parse(atob(base64));  // Decode JWT payload
+
+                console.log("Decoded JWT Payload:", jsonPayload);  // Log payload
+
+                // Extract the username and role from the token
+                userName = jsonPayload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"];  // Correct username key
+                role = jsonPayload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"];  // Correct role key
+
+                console.log("Username from JWT:", userName);  // Print username
+                console.log("Role from JWT:", role);  // Print role
+            } else {
+                console.log("JWT token not found in localStorage.");
+            }
+        }
+
+        // Load bookings based on status filter
+        function loadBookings(status) {
+            // Ensure that jwtToken is available before making the fetch request
+            if (!authToken) {
+                console.error("JWT token is not available.");
+                return;
+            }
+
+            // Corrected fetch URL with template literal
+            fetch(`https://localhost:7290/api/Booking/GetByStatus/all`, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${authToken}`
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const tableBody = document.getElementById("bookingsTableBody");
+                    const bookingsTable = document.getElementById("bookingsTable");
+                    const noBookingsMessage = document.getElementById("noBookingsMessage");
+                    const noBookingsText = document.getElementById("noBookingsText");
+
+                    tableBody.innerHTML = ''; // Clear the table
+                    data.forEach(booking => {
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                        <td>${booking.bookingID}</td>
+                        <td>${booking.facilityDescription}</td>
+                        <td>${booking.bookingDateFrom}</td>
+                        <td>${booking.bookingDateTo}</td>
+                        <td>${booking.bookedBy}</td>
+                        <td>${booking.bookingStatus}</td>
+                    `;
+
+                        // Add edit/delete buttons based on user role
+                        if (role === "Administrator" || role === "Member") {
+                            row.innerHTML += `
+                            <td>
+                                <button class="btn btn-warning btn-sm" onclick="editBooking(${booking.bookingID})">Edit</button>
+                                <button class="btn btn-danger btn-sm" onclick="deleteBooking(${booking.bookingID})">Delete</button>
+                            </td>
+                        `;
+                        } else {
+                            row.innerHTML += `<td></td>`;
+                        }
+
+                        tableBody.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error loading bookings:', error));
+        }
+
+        // Call decodeJWT initially to ensure the token is decoded
+        decodeJWT();
+
+        // Call loadBookings initially or based on your page setup
+        loadBookings('all');
+
+        // Fetch the user's name from the JWT token
+        function getUserName() {
+            if (authToken) {
+                try {
+                    const payload = JSON.parse(atob(authToken.split('.')[1]));
+                    return payload["unique_name"] || null;
+                } catch (error) {
+                    console.error("Error decoding JWT:", error);
+                    return null;
+                }
+            }
+            return null;
+        }
+
+        // Fetch the user role from the JWT token
+        function getUserRole() {
+            if (authToken) {
+                try {
+                    const payload = JSON.parse(atob(authToken.split('.')[1]));
+                    return payload["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] || null;
+                } catch (error) {
+                    console.error("Error decoding JWT:", error);
+                    return null;
+                }
+            }
+            return null;
+        }
+    </script>
+
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">
+            <a href="Home.html">Costume Corner</a>
+        </div>
+        <div class="nav-links">
+            <a href="Home.html">Home</a>
+            <a href="Products.html">Products</a>
+            <a href="Bookings.html">Bookings</a>
+            <a href="AboutUs.html">About Us</a>
+            <a href="LocateUs.html">Locate Us</a>
+            <a href="BookNow.html">Book Now</a>
+            <a href="Profile.html" class="profile-icon"><i class="fas fa-user"></i></a>
+            <a href="Login.html" class="logout-icon"><i class="fas fa-sign-out-alt"></i></a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Welcome to the Booking Page!</h1>
+        <p>Here are the details of your bookings:</p>
+        <div class="table-responsive mt-4">
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>Facility Description</th>
+                        <th>Booking Date From</th>
+                        <th>Booking Date To</th>
+                        <th>Booked By</th>
+                        <th>Booking Status</th>
+                    </tr>
+                </thead>
+                <tbody id="bookings-table-body">
+                    <!-- Rows will be dynamically generated here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Costume Corner. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

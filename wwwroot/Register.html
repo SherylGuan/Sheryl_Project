@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+
+        /* Hero section styling */
+        .hero {
+            background: url('https://example.com/hero-image.jpg') no-repeat center center/cover;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+            .hero h1 {
+                font-size: 2.5rem;
+                margin-bottom: 10px;
+                color: black;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+                color: black;
+            }
+
+            .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            justify-content: center;
+            margin: auto;
+        }
+
+            .container h2 {
+                margin-bottom: 20px;
+                color: #333;
+            }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+            .form-group label {
+                display: block;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+
+            .form-group input {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+            }
+
+            .form-group button {
+                width: 100%;
+                padding: 10px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+                .form-group button:hover {
+                    background-color: #0056b3;
+                }
+
+        .link {
+            color: #007bff;
+            cursor: pointer;
+            text-align: center;
+            display: block;
+            margin-top: 10px;
+            text-decoration: none;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+
+        .success {
+            color: green;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">
+            <a>Costume Corner</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div>
+            <h1>Welcome to Costume Corner</h1>
+            <p>Register an account</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Register</h2>
+        <div id="registerResponseMessage"></div>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="registerUsername">Username</label>
+                <input type="text" id="registerUsername" name="username" required />
+            </div>
+            <div class="form-group">
+                <label for="registerEmail">Email</label>
+                <input type="email" id="registerEmail" name="email" required />
+            </div>
+            <div class="form-group">
+                <label for="registerPassword">Password</label>
+                <input type="password" id="registerPassword" name="password" required />
+            </div>
+            <div class="form-group">
+                <button type="submit">Register</button>
+            </div>
+        </form>
+        <a href="Login.html" class="link">Already have an account? Login</a>
+    </div>
+
+    <script>
+        const registerForm = document.getElementById('registerForm');
+        const registerResponseMessage = document.getElementById('registerResponseMessage');
+
+        registerForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const username = document.getElementById('registerUsername').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+
+            const registerData = {
+                Username: username,
+                Email: email,
+                Password: password
+            };
+
+            try {
+                const response = await fetch('/api/authenticate/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(registerData)
+                });
+
+                if (response.ok) {
+                    registerResponseMessage.textContent = 'Registration successful! You can now log in.';
+                    registerResponseMessage.className = 'success';
+                } else {
+                    registerResponseMessage.textContent = 'Registration failed. Please try again.';
+                    registerResponseMessage.className = 'error';
+                }
+            } catch (error) {
+                registerResponseMessage.textContent = 'An error occurred. Please try again.';
+                registerResponseMessage.className = 'error';
+            }
+        });
+    </script>
+</body>
+</html>

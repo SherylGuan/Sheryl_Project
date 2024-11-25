@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Hero section styling */
+        .hero {
+            background: url('https://example.com/hero-image.jpg') no-repeat center center/cover;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+            .hero h1 {
+                font-size: 2.5rem;
+                margin-bottom: 10px;
+                color: black;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+                color: black;
+            }
+
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 350px;
+            justify-content: center;
+            margin: auto;
+        }
+
+            .container h2 {
+                margin-bottom: 20px;
+                color: #333;
+            }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+            .form-group label {
+                display: block;
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+
+            .form-group input {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+            }
+
+            .form-group button {
+                width: 100%;
+                padding: 10px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+                .form-group button:hover {
+                    background-color: #0056b3;
+                }
+
+        .link {
+            color: #007bff;
+            cursor: pointer;
+            text-align: center;
+            display: block;
+            margin-top: 10px;
+            text-decoration: none;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+
+        .success {
+            color: green;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">
+            <a>Costume Corner</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div>
+            <h1>Welcome to Costume Corner</h1>
+            <p>Please login to your account</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Login</h2>
+        <div id="loginResponseMessage"></div>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="loginUsername">Username</label>
+                <input type="text" id="loginUsername" name="username" required />
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" name="password" required />
+            </div>
+            <div class="form-group">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+        <a href="Register.html" class="link">Don't have an account? Register</a>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const loginResponseMessage = document.getElementById('loginResponseMessage');
+
+        loginForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            const loginData = {
+                Username: username,
+                Password: password
+            };
+
+            try {
+                const response = await fetch('/api/authenticate/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(loginData)
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    console.log('JWT Token:', result.token); // Log the token
+                    loginResponseMessage.textContent = 'Login successful! Redirecting...';
+                    loginResponseMessage.className = 'success';
+
+                    // Save the token in localStorage
+                    localStorage.setItem('authToken', result.token);
+
+                    // Decode the JWT token and check the role
+                    const token = result.token;
+                    const decodedToken = decodeJwt(token);
+                    const userRole = decodedToken.role; // Assuming 'role' is the claim name in the token
+
+                    console.log("Decoded User Role:", userRole); // Debugging step
+
+                    // Redirect based on role
+                    if (userRole === "Admin") {
+                        window.location.href = 'AdminDashboard.html'; // Redirect to Admin page
+                    } else {
+                        window.location.href = 'Home.html'; // Redirect to Member page
+                    }
+                } else {
+                    loginResponseMessage.textContent = 'Login failed. Please check your credentials.';
+                    loginResponseMessage.className = 'error';
+                }
+            } catch (error) {
+                loginResponseMessage.textContent = 'An error occurred. Please try again.';
+                loginResponseMessage.className = 'error';
+            }
+        });
+
+        // Function to decode JWT token
+        function decodeJwt(token) {
+            const base64Url = token.split('.')[1];
+            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+            return JSON.parse(jsonPayload);
+        }
+    </script>
+
+</body>
+</html>

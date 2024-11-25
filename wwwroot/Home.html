@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Costume Corner</title>
+    <!-- Include Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Hero section styling */
+        .hero {
+            background: url('https://example.com/hero-image.jpg') no-repeat center center/cover;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+            .hero h1 {
+                font-size: 2.5rem;
+                margin-bottom: 10px;
+                color: black;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+                color: black;
+            }
+
+        /* Banner section styling */
+        .banner {
+            justify-content: center;
+            display: flex;
+        }
+
+            .banner img {
+                width: 80%;
+                height: auto;
+            }
+
+        /* Popular Products section styling */
+        .popular-products {
+            padding: 20px;
+            text-align: center;
+        }
+
+            .popular-products h2 {
+                margin-bottom: 20px;
+                color: #333;
+            }
+
+        .product-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 0 10px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .product-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.2s ease-in-out;
+        }
+
+            .product-card:hover {
+                transform: scale(1.05);
+            }
+
+            .product-card img {
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+                border-radius: 8px;
+            }
+
+            .product-card h3 {
+                font-size: 1.2rem;
+                color: #333;
+                margin-top: 15px;
+            }
+
+            .product-card p {
+                font-size: 1rem;
+                color: #777;
+                margin: 10px 0;
+            }
+
+            .product-card .price {
+                font-size: 1.2rem;
+                font-weight: bold;
+                color: #00bcd4;
+            }
+
+            .product-card .view {
+                margin-top: 15px;
+                padding: 10px;
+                background-color: #00bcd4;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+                .product-card .view:hover {
+                    background-color: #0288a3;
+                }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">
+            <a href="Home.html">Costume Corner</a>
+        </div>
+        <div class="nav-links">
+            <a href="Home.html">Home</a>
+            <a href="Products.html">Products</a>
+            <a href="Bookings.html">Bookings</a>
+            <a href="AboutUs.html">About Us</a>
+            <a href="LocateUs.html">Locate Us</a>
+            <a href="BookNow.html">Book Now</a>
+            <a href="Profile.html" class="profile-icon"><i class="fas fa-user"></i></a>
+            <a href="Login.html" class="logout-icon"><i class="fas fa-sign-out-alt"></i></a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div>
+            <h1>Welcome to Costume Corner</h1>
+            <p>Rent your favorite Genshin Impact-inspired outfits here!</p>
+        </div>
+    </div>
+
+    <!-- Banner -->
+    <div class="banner">
+        <img src="images/banner.png" />
+    </div>
+
+    <!-- Popular Products Section -->
+    <div class="popular-products">
+        <h2>Popular Outfits</h2>
+        <div class="product-container">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <img src="images/Diluc.png" alt="Diluc Outfit">
+                <h3>Diluc</h3>
+                <p>WOW</p>
+                <div class="price">$8 per day</div>
+                <a href=" Products.html">
+                    <button class="view">View</button>
+                </a>
+            </div>
+            <!-- Product 2 -->
+            <div class="product-card">
+                <img src="images/Navia.png" alt="Navia">
+                <h3>Navia</h3>
+                <p>WOW</p>
+                <div class="price">$8 per day</div>
+                <a href=" Products.html">
+                    <button class="view">View</button>
+                </a>
+            </div>
+            <!-- Product 3 -->
+            <div class="product-card">
+                <img src="images/Neuvillette.png" alt="Neuvillette">
+                <h3>Neuvillette</h3>
+                <p>WOW</p>
+                <div class="price">$8 per day</div>
+                <a href=" Products.html">
+                    <button class="view">View</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Costume Corner. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

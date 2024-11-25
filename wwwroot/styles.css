@@ -1,0 +1,60 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ADD8E6;
+}
+
+/* Navigation bar styling */
+nav {
+    background-color: #7689de;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+}
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 10px;
+        font-weight: bold;
+        font-size: 1rem;
+    }
+
+        nav a:hover {
+            color: #00bcd4;
+        }
+
+    nav .nav-links {
+        display: flex;
+        gap: 15px;
+    }
+
+    nav .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+/* Profile icon styling */
+.profile-icon {
+    font-size: 1.1rem;
+}
+
+/* Logout icon styling */
+.logout-icon {
+    font-size: 1.1rem;
+    padding-right: 20px;
+}
+
+/* Footer styling */
+footer {
+    background-color: #7689de;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
